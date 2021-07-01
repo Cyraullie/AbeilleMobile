@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import Input from "./../../components/Input"
+import Button from "./../../components/Button"
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -64,14 +65,7 @@ class LoginScreen extends Component {
           <View style={styles.areaLogin}>
             <Input placeholder="Nom d'utilisateur" onChange={this.onUsernameChange} background="#FBEFAE" color="#684500"/>
             <Input placeholder="Mot de passe" onChange={this.onPasswordChange} background="#FBEFAE" color="#684500" security={true}/>
-            <TouchableOpacity
-              style={styles.buttonLogin}
-              onPress={() => {
-                
-              }}
-            >
-              <Text style={styles.textButton}>Se connecter</Text>
-            </TouchableOpacity>
+            <Button action={this.props.navigation.navigate("Login")} textButton="Se connecter" background="#684500" color="#FFFFFF"/>
           </View>
         </ImageBackground>
       </View>
@@ -100,20 +94,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#343223"
   }, 
-  textButton: {
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-
-  buttonLogin: {
-    color: "#FFFFFF",
-    backgroundColor: "#684500",
-    borderRadius: 30,
-    width: "100%",
-    height: 48,
-    justifyContent: "center",
-  },
 
   areaTitle: {
     textAlign: "left"
