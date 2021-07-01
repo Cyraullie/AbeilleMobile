@@ -6,16 +6,19 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
+
+import Input from "./../../components/Input"
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props),
       (this.state = { initials: "", password: "", });
+      this.onUsernameChange = this.onUsernameChange.bind(this);
+      this.onPasswordChange = this.onPasswordChange.bind(this);
   }
 
-  onInitialsChange = (initials) => {
+  onUsernameChange = (initials) => {
     this.setState({ initials: initials });
   };
 
@@ -59,20 +62,8 @@ class LoginScreen extends Component {
             <Text style={styles.title}>Connexion</Text>
           </View>
           <View style={styles.areaLogin}>
-            <TextInput
-              style={styles.input}
-              onChangeText={this.onInitialsChange}
-              placeholder="Nom d'utilisateur"
-              placeholderStyle={styles.placeholder}
-            ></TextInput>
-
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              onChangeText={this.onPasswordChange}
-              placeholder="Mot de passe"
-              placeholderStyle={styles.placeholder}
-            ></TextInput>
+            <Input placeholder="Nom d'utilisateur" onChange={this.onUsernameChange} background="#FBEFAE" color="#684500"/>
+            <Input placeholder="Mot de passe" onChange={this.onPasswordChange} background="#FBEFAE" color="#684500" security={true}/>
             <TouchableOpacity
               style={styles.buttonLogin}
               onPress={() => {
@@ -109,9 +100,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#343223"
   }, 
-  placeholder: {
-    marginLeft: 35,
-  },
   textButton: {
     color: "#FFFFFF",
     fontWeight: "bold",
@@ -125,14 +113,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 48,
     justifyContent: "center",
-  },
-  input: {
-    borderRadius: 30,
-    width: "100%",
-    height: 48,
-    borderColor: "#684500",
-    borderWidth: 1,
-    marginBottom: 32
   },
 
   areaTitle: {
