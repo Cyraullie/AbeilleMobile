@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     backgroundColor: "#684500",
     borderRadius: 30,
-    width: 311,
+    width: "100%",
     height: 64,
     justifyContent: "center",
   },
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 
   areaLogin: {
     width: "100%",
-    height: 201,
+    padding: 32,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     backgroundColor: "#FBEFAE",
