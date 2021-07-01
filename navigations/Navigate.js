@@ -3,7 +3,7 @@ import {
 } from "@react-navigation/stack";
 import React, { Component } from "react";
 
-import HomeScreen from "../screens/Common/HomeScreen";
+import WelcomeScreen from "../screens/Auth/WelcomeScreen";
 
 const Stack = createStackNavigator();
 
@@ -43,16 +43,16 @@ class Navigation extends Component {
         ) : (*/
         <>
           <Stack.Navigator
-            initialRouteName={"Home"}
+            initialRouteName={"Welcome"}
           >
             <Stack.Screen
-              name="Home"
+              name="Welcome"
               options={{
                 headerShown: false,
               }}
             >
               {(props) => (
-                <HomeScreen {...props} auth={this.handleTokenUpdate} />
+                <WelcomeScreen {...props} auth={this.handleTokenUpdate} />
               )}
             </Stack.Screen>
           </Stack.Navigator>
