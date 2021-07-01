@@ -4,6 +4,7 @@ import {
 import React, { Component } from "react";
 
 import WelcomeScreen from "../screens/Auth/WelcomeScreen";
+import LoginScreen from "../screens/Auth/LoginScreen";
 
 const Stack = createStackNavigator();
 
@@ -53,6 +54,16 @@ class Navigation extends Component {
             >
               {(props) => (
                 <WelcomeScreen {...props} auth={this.handleTokenUpdate} />
+              )}
+            </Stack.Screen>
+            <Stack.Screen
+              name="Login"
+              options={{
+                headerShown: false,
+              }}
+            >
+              {(props) => (
+                <LoginScreen {...props} auth={this.handleTokenUpdate} />
               )}
             </Stack.Screen>
           </Stack.Navigator>

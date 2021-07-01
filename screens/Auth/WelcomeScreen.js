@@ -24,11 +24,17 @@ class WelcomeScreen extends Component {
             <Text style={styles.text}>Vous avez déjà un compte ?</Text>
             <TouchableOpacity
              style={styles.buttonLogin}
+             onPress={() => {
+              this.props.navigation.navigate("Login");
+            }}
             >
-              <Text style={styles.textButton}>Se Connecter</Text>
+              <Text style={styles.textButton}>Se connecter</Text>
             </TouchableOpacity>
             <TouchableOpacity
              style={styles.buttonLink}
+             onPress={() => {
+              this.props.navigation.navigate("Register");
+            }}
              >
               <Text style={styles.link}>Ou inscrivez-vous en cliquant ici</Text>
             </TouchableOpacity>
@@ -95,7 +101,6 @@ const styles = StyleSheet.create({
     flex: 2,
     textAlign: "left"
   },
-
   areaLogin: {
     width: "100%",
     padding: 32,
