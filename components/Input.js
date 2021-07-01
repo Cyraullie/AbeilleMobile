@@ -24,7 +24,7 @@ class Input extends Component {
             onChangeText={this.props.onChange}
             placeholder={this.props.placeholder}
             secureTextEntry={this.props.security}
-          ></TextInput>
+          />
       </>
     );
   }
