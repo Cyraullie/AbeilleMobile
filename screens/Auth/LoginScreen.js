@@ -5,19 +5,14 @@ import {
   Text,
   TextInput,
   View,
-  Button,
+  TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import { showMessage } from "react-native-flash-message";
-import { Picker } from "@react-native-picker/picker";
-
-import PickerView from "../../components/Picker";
-import APIKit from "../../components/Api";
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props),
-      (this.state = { initials: "", password: "", base: "", message: "" });
+      (this.state = { initials: "", password: "", });
   }
 
   onInitialsChange = (initials) => {
@@ -48,66 +43,53 @@ class LoginScreen extends Component {
         duration: 6000
       });
     };
-    this.state.base == "" ? 
-    showMessage({
-      message: "aucune base n'a été sélectionnée.",
-      type: "warning",
-      duration: 6000
-    }) : APIKit.getToken(payload).then(onSuccess).catch(onFailure);
+    this.state.base == "" ?
+      showMessage({
+        message: "aucune base n'a été sélectionnée.",
+        type: "warning",
+        duration: 6000
+      }) : APIKit.getToken(payload).then(onSuccess).catch(onFailure);
   }
-  
+
   render() {
     return (
-      <View style={styles.container}>
-        <ImageBackground source={image} style={styles.image}>
-          <SafeAreaView>
-            <Text style={styles.text}>Initiales</Text>
+      <View style={styles.page}>
+        <ImageBackground source={require("./../../assets/LoginBackground.svg")} style={styles.image}>
+          <View style={styles.areaTitle}>
+            <Text style={styles.title}>Connexion</Text>
+          </View>
+          <View style={styles.areaLogin}>
             <TextInput
               style={styles.input}
               onChangeText={this.onInitialsChange}
+              placeholder="Nom d'utilisateur"
+              placeholderStyle={styles.placeholder}
             ></TextInput>
-            <Text style={styles.text}>Mot de passe</Text>
+
             <TextInput
               style={styles.input}
               secureTextEntry
               onChangeText={this.onPasswordChange}
+              placeholder="Mot de passe"
+              placeholderStyle={styles.placeholder}
             ></TextInput>
-            <Text style={styles.text}>Base</Text>
-            <Picker
-              style={styles.picker}
-              selectedValue={(this.state.base) || '0'}
-              onValueChange={(value) => this.setState({ base: value })}
+            <TouchableOpacity
+              style={styles.buttonLogin}
+              onPress={() => {
+                
+              }}
             >
-              <Picker.Item
-                label="--- Choissez ---"
-                value="0"
-                selected
-                key={Math.random().toString(36).substr(2, 9)}
-              ></Picker.Item>
-              <PickerView />
-            </Picker>
-            <View style={[{ width: "50%", marginLeft: "25%" }]}>
-              <Button
-                size={15}
-                color="blue"
-                onPress={this.onPressLogin.bind(this)}
-                title="Se connecter"
-              />
-            </View>
-          </SafeAreaView>
-          <Text style={{fontWeight: "bold"}}>Version: eval CGE</Text>
+              <Text style={styles.textButton}>Se connecter</Text>
+            </TouchableOpacity>
+          </View>
         </ImageBackground>
       </View>
     );
   }
 }
 
-const image = {
-  uri: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2t5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-};
-
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     flexDirection: "column",
     alignSelf: "stretch",
@@ -118,23 +100,51 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
-  text: {
-    fontSize: 18,
+
+  title: {
+    alignSelf: "stretch",
+    marginTop: 100,
+    marginLeft: 35,
+    fontSize: 31.25,
     fontWeight: "bold",
+    color: "#343223"
+  }, 
+  placeholder: {
+    marginLeft: 35,
+  },
+  textButton: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+
+  buttonLogin: {
+    color: "#FFFFFF",
+    backgroundColor: "#684500",
+    borderRadius: 30,
+    width: "100%",
+    height: 48,
+    justifyContent: "center",
   },
   input: {
-    backgroundColor: "#FFFFFF",
-
-    marginLeft: 50,
-    marginRight: 50,
-    marginBottom: 20,
-    height: 50,
+    borderRadius: 30,
+    width: "100%",
+    height: 48,
+    borderColor: "#684500",
+    borderWidth: 1,
+    marginBottom: 32
   },
-  picker: {
-    marginLeft: 50,
-    marginRight: 50,
-    marginBottom: 20,
-    height: 50,
+
+  areaTitle: {
+    textAlign: "left"
+  },
+  areaLogin: {
+    width: "100%",
+    padding: 32,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
