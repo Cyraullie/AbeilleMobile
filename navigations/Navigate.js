@@ -5,6 +5,7 @@ import React, { Component } from "react";
 
 import WelcomeScreen from "../screens/Auth/WelcomeScreen";
 import LoginScreen from "../screens/Auth/LoginScreen";
+import RegisterScreen from "../screens/Auth/RegisterScreen";
 
 const Stack = createStackNavigator();
 
@@ -15,18 +16,13 @@ class Navigation extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { userToken: localStorage.getItem("user_token"), action: localStorage.getItem("actionId") };
     this.handleTokenUpdate = this.handleTokenUpdate.bind(this);
-    this.handleActionUpdate = this.handleActionUpdate.bind(this);
   }
 
   handleTokenUpdate(data) {
     this.setState({ userToken: data });
   }
-
-  handleActionUpdate(data) {
-    this.setState({ action: data });
-  }
+  
 
   render() {
     return (
@@ -53,7 +49,7 @@ class Navigation extends Component {
               }}
             >
               {(props) => (
-                <WelcomeScreen {...props} auth={this.handleTokenUpdate} />
+                <WelcomeScreen {...props}  />
               )}
             </Stack.Screen>
             <Stack.Screen
@@ -63,7 +59,17 @@ class Navigation extends Component {
               }}
             >
               {(props) => (
-                <LoginScreen {...props} auth={this.handleTokenUpdate} />
+                <LoginScreen {...props} />
+              )}
+            </Stack.Screen>
+            <Stack.Screen
+              name="Register"
+              options={{
+                headerShown: false,
+              }}
+            >
+              {(props) => (
+                <RegisterScreen {...props}  />
               )}
             </Stack.Screen>
           </Stack.Navigator>
